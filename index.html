@@ -17,7 +17,8 @@
 
 			const urlParams = new URLSearchParams(window.location.search);
 			const source = urlParams.get('source');
-			const theme = urlParams.get('theme') || "custom-wagon";
+			const theme = urlParams.get('theme') || "kesseo";
+			const hljsStyle = urlParams.get('hljs') || "night-owl";
 
 			const noSourceStylesheets = [
 				"css/home.css"
@@ -26,15 +27,13 @@
 				"dist/reset.css",
 				"dist/reveal.css",
 				`dist/theme/${theme}.css`,
+				`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`,
 			]
 
 			const stylesheets = source ? revealStylesheets : noSourceStylesheets
 
 			stylesheets.forEach(stylesheet => addStyleSheet(stylesheet))
-			</script>
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="plugin/highlight/solarized-light.css">
+		</script>
 	</head>
 	<body>
 		<div class="reveal">
