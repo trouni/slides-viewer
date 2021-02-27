@@ -1,0 +1,65 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+// @import url(../../dist/theme/fonts/source-sans-pro/source-sans-pro.css);
+@import url(../../dist/theme/fonts/league-gothic/league-gothic.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #657b83;
+$headingColor: #586e75;
+$accentColor: #fd1015;
+$secondaryColor: #e19b19;
+
+$mainFontSize: 26px;
+$mainFont: 'Lato', Helvetica, sans-serif;
+$headingFont: "League Gothic", Impact, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 400;
+$linkColor: $accentColor;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.77em;
+$heading2Size: 2.11em;
+$heading3Size: 1.55em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+strong {
+    color: $accentColor;
+    background-color: rgba($accentColor, 0.1);
+}
+
+code, code.cm-s-ipython {
+    color: $mainColor;
+    background-color: rgba($secondaryColor, 0.1);
+}
+
+code.cm-s-ipython .cm-comment {
+    color: rgba($mainColor, 0.5);
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
