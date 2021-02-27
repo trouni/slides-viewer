@@ -22,7 +22,7 @@ $backgroundColor: #fff;
 $mainColor: #657b83;
 $headingColor: #586e75;
 $accentColor: #fd1015;
-$secondaryColor: #e19b19;
+$secondaryColor: #ff5f62;
 
 $mainFontSize: 26px;
 $mainFont: 'Lato', Helvetica, sans-serif;
@@ -31,14 +31,9 @@ $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
 $headingFontWeight: 400;
-$linkColor: $accentColor;
+$linkColor: $secondaryColor;
 $linkColorHover: lighten( $linkColor, 15% );
-$selectionBackgroundColor: lighten( $linkColor, 25% );
-
-$heading1Size: 2.77em;
-$heading2Size: 2.11em;
-$heading3Size: 1.55em;
-$heading4Size: 1.0em;
+$selectionBackgroundColor: lighten( $linkColor, 20% );
 
 section.has-dark-background {
 	&, h1, h2, h3, h4, h5, h6 {
@@ -48,12 +43,14 @@ section.has-dark-background {
 
 strong {
     color: $accentColor;
-    background-color: rgba($accentColor, 0.1);
+    // background-color: rgba($accentColor, 0.1);
 }
 
 code, code.cm-s-ipython {
     color: $mainColor;
-    background-color: rgba($secondaryColor, 0.1);
+    background-color: rgba($accentColor, 0.1);
+    padding: 0 0.4em;
+    border-radius: 0.25em;
 }
 
 code.cm-s-ipython .cm-comment {

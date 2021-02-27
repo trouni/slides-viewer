@@ -8,12 +8,13 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   color: #fff; }
 
 strong {
-  color: #fd1015;
-  background-color: rgba(253, 16, 21, 0.1); }
+  color: #fd1015; }
 
 code, code.cm-s-ipython {
   color: #657b83;
-  background-color: rgba(225, 155, 25, 0.1); }
+  background-color: rgba(253, 16, 21, 0.1);
+  padding: 0 0.4em;
+  border-radius: 0.25em; }
 
 code.cm-s-ipython .cm-comment {
   color: rgba(101, 123, 131, 0.5); }
@@ -36,14 +37,14 @@ code.cm-s-ipython .cm-comment {
   --heading-text-shadow: none;
   --heading-font-weight: 400;
   --heading1-text-shadow: none;
-  --heading1-size: 2.77em;
+  --heading1-size: 3.77em;
   --heading2-size: 2.11em;
   --heading3-size: 1.55em;
   --heading4-size: 1em;
   --code-font: monospace;
-  --link-color: #fd1015;
-  --link-color-hover: #fe5c5f;
-  --selection-background-color: #fe8e91;
+  --link-color: #ff5f62;
+  --link-color-hover: #ffacad;
+  --selection-background-color: #ffc5c6;
   --selection-color: #fff; }
 
 .reveal-viewport {
@@ -58,12 +59,12 @@ code.cm-s-ipython .cm-comment {
 
 .reveal ::selection {
   color: #fff;
-  background: #fe8e91;
+  background: #ffc5c6;
   text-shadow: none; }
 
 .reveal ::-moz-selection {
   color: #fff;
-  background: #fe8e91;
+  background: #ffc5c6;
   text-shadow: none; }
 
 .reveal .slides section,
@@ -91,7 +92,7 @@ code.cm-s-ipython .cm-comment {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.77em; }
+  font-size: 3.77em; }
 
 .reveal h2 {
   font-size: 2.11em; }
@@ -257,18 +258,18 @@ code.cm-s-ipython .cm-comment {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #fd1015;
+  color: #ff5f62;
   text-decoration: none;
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #fe5c5f;
+  color: #ffacad;
   text-shadow: none;
   border: none; }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #bf0206; }
+  background: #ff1317; }
 
 /*********************************************
  * Frame helper
@@ -281,21 +282,21 @@ code.cm-s-ipython .cm-comment {
   transition: all .15s linear; }
 
 .reveal a:hover .r-frame {
-  border-color: #fd1015;
+  border-color: #ff5f62;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
 .reveal .controls {
-  color: #fd1015; }
+  color: #ff5f62; }
 
 /*********************************************
  * PROGRESS BAR
  *********************************************/
 .reveal .progress {
   background: rgba(0, 0, 0, 0.2);
-  color: #fd1015; }
+  color: #ff5f62; }
 
 /*********************************************
  * PRINT BACKGROUND
