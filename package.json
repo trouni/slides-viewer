@@ -22,8 +22,7 @@
     "url": "git://github.com/hakimel/reveal.js.git"
   },
   "engines": {
-    "node": ">=10.0.0",
-    "yarn": "^1.22.10"
+    "node": ">=10.0.0"
   },
   "keywords": [
     "reveal",
@@ -96,5 +95,8 @@
       "no-eq-null": 2,
       "no-unused-expressions": 0
     }
+  },
+  "dependencies": {
+    "express": ">=3.0.0 <4.0.0"
   }
 }
