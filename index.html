@@ -21,7 +21,7 @@
 			const hljsStyle = urlParams.get('hljs') || "night-owl";
 
 			const noSourceStylesheets = [
-				"css/home.css"
+				"dist/home.css"
 			]
 			const revealStylesheets = [
 				"dist/reset.css",
@@ -34,6 +34,7 @@
 
 			stylesheets.forEach(stylesheet => addStyleSheet(stylesheet))
 		</script>
+		<style>.scrollable-slide {height: 800px;overflow-y: auto !important;}</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -97,6 +98,28 @@
 				const slides = document.createElement('section')
 				for (var option in revealSettings) slides.dataset[option] = revealSettings[option]
 				slidesContainer.append(slides)
+
+				// Scrollable slides if taller than 800px
+
+				const resetSlideScrolling = (slide) => {
+					slide.classList.remove('scrollable-slide');
+				}
+
+				const handleSlideScrolling = (slide) => {
+					if (slide.scrollHeight >= 800) {
+						slide.classList.add('scrollable-slide');
+					}
+				}
+
+				Reveal.addEventListener('ready', function (event) {
+					handleSlideScrolling(event.currentSlide);
+				});
+
+				Reveal.addEventListener('slidechanged', function (event) {
+					console.log(event.currentSlide.scrollHeight);
+					if (event.previousSlide) resetSlideScrolling(event.previousSlide)
+					handleSlideScrolling(event.currentSlide);
+				});
 
 				// More info about config & dependencies:
 				// - https://github.com/hakimel/reveal.js#configuration
