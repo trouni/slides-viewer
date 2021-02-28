@@ -35,11 +35,9 @@ $linkColor: $secondaryColor;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 20% );
 
-section.has-dark-background {
-	&, h1, h2, h3, h4, h5, h6 {
-		color: #fff;
-	}
-}
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
 
 strong {
     color: $accentColor;
@@ -56,7 +54,3 @@ code, code.cm-s-ipython {
 code.cm-s-ipython .cm-comment {
     color: rgba($mainColor, 0.5);
 }
-
-// Theme template ------------------------------
-@import "../template/theme";
-// ---------------------------------------------

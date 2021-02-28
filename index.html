@@ -18,17 +18,17 @@
 			const urlParams = new URLSearchParams(window.location.search);
 			const source = urlParams.get('source');
 			const theme = urlParams.get('theme') || "kesseo";
-			const hljsStyle = urlParams.get('hljs') || "night-owl";
-
+			const hljsStyle = urlParams.get('hljs');
+			
 			const noSourceStylesheets = [
 				"dist/home.css"
 			]
 			const revealStylesheets = [
 				"dist/reset.css",
 				"dist/reveal.css",
-				`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`,
 				`dist/theme/${theme}.css`,
 			]
+			if (hljsStyle) revealStylesheets.push(`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`)
 
 			const stylesheets = source ? revealStylesheets : noSourceStylesheets
 

@@ -4,21 +4,6 @@
  * By Hakim El Hattab, http://hakim.se
  */
 @import url(../../dist/theme/fonts/league-gothic/league-gothic.css);
-section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
-  color: #fff; }
-
-strong {
-  color: #fd1015; }
-
-code, code.cm-s-ipython {
-  color: #657b83;
-  background-color: rgba(253, 16, 21, 0.1);
-  padding: 0 0.4em;
-  border-radius: 0.25em; }
-
-code.cm-s-ipython .cm-comment {
-  color: rgba(101, 123, 131, 0.5); }
-
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -304,3 +289,15 @@ code.cm-s-ipython .cm-comment {
 @media print {
   .backgrounds {
     background-color: #fff; } }
+
+strong {
+  color: #fd1015; }
+
+code, code.cm-s-ipython {
+  color: #657b83;
+  background-color: rgba(253, 16, 21, 0.1);
+  padding: 0 0.4em;
+  border-radius: 0.25em; }
+
+code.cm-s-ipython .cm-comment {
+  color: rgba(101, 123, 131, 0.5); }
