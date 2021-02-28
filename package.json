@@ -54,6 +54,7 @@
     "highlight.js": "^10.0.3",
     "marked": "^1.1.0",
     "node-qunit-puppeteer": "^2.0.1",
+    "qunit": "^2.10.0",
     "rollup": "^2.26.4",
     "rollup-plugin-terser": "^7.0.0",
     "yargs": "^15.1.0"
@@ -97,7 +98,6 @@
     }
   },
   "dependencies": {
-    "qunit": "^2.10.0",
     "express": ">=3.0.0 <4.0.0"
   }
 }
