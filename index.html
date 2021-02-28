@@ -26,8 +26,8 @@
 			const revealStylesheets = [
 				"dist/reset.css",
 				"dist/reveal.css",
-				`dist/theme/${theme}.css`,
 				`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`,
+				`dist/theme/${theme}.css`,
 			]
 
 			const stylesheets = source ? revealStylesheets : noSourceStylesheets
@@ -75,7 +75,7 @@
 					center: true,
 					slideNumber: true,
 					disableLayout: false,
-					separatorVertical: "^\r?\n\r?\n",
+					separatorVertical: "^(\r?\n\r?\n|--$)",
 					// Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
 					// For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
 					separatorNotes: urlParams.get('separatorNotes') || "^Note:",
@@ -116,7 +116,6 @@
 				});
 
 				Reveal.addEventListener('slidechanged', function (event) {
-					console.log(event.currentSlide.scrollHeight);
 					if (event.previousSlide) resetSlideScrolling(event.previousSlide)
 					handleSlideScrolling(event.currentSlide);
 				});
