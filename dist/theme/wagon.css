@@ -306,12 +306,28 @@ section.has-dark-background h6 {
   margin-bottom: 10px;
   line-height: 1.2em; }
 
+.reveal h1:last-child,
+.reveal h2:last-child,
+.reveal h3:last-child,
+.reveal h4:last-child,
+.reveal h5:last-child,
+.reveal h6:last-child {
+  margin-bottom: 1em; }
+
 .reveal h1,
 .reveal h2,
 .reveal h3,
 .reveal h4 {
   margin-bottom: 1em;
   margin-top: 1em; }
+
+.reveal .slide-number {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  opacity: 0.5;
+  line-height: inherit;
+  background-color: unset; }
 
 .reveal pre {
   margin-top: 1em;
