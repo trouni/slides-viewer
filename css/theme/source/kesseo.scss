@@ -33,6 +33,10 @@ $headingTextShadow: 0px 0px 6px rgba(0,0,0,0.2);
 // Change text colors against light slide backgrounds
 @include light-bg-text-color(#222);
 
+// Inline code
+:not(pre)>code {
+	background-color: rgba($mainColor, 0.1);
+}
 
 // Theme template ------------------------------
 @import "../template/theme";
