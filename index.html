@@ -78,8 +78,8 @@
 					separatorVertical: "^(\r?\n\r?\n|--$)",
 					// Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
 					// For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
-					separatorNotes: urlParams.get('separatorNotes') || "^Note:",
-					separator: urlParams.get('separator') || "^---$",
+					separatorNotes: "^Note:",
+					separator: "^---$",
 				}
 	
 				const revealSettings = urlParams
