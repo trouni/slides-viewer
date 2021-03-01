@@ -2,6 +2,8 @@
 
 [Online slides viewer](https://slides.trouni.com) by [Trouni Tiet](https://github.com/trouni/slides-viewer) (powered by [Reveal.js](https://revealjs.com))
 
+Note: These instructions are also [viewable as slides](https://slides.trouni.com/?src=trouni/slides-viewer).
+
 ---
 
 ## Slides to display
