@@ -4,7 +4,7 @@
   <a href="http://slides.trouni.com">Online slides viewer</a> by <a href="https://github.com/trouni/slides-viewer">Trouni Tiet</a> (powered by <a href="https://revealjs.com">Reveal.js)</a>
 </p>
 
-Note: These instructions are also [viewable as slides](http://slides.trouni.com/?src=trouni/slides-viewer).
+Note: These instructions are also [viewable as slides](http://slides.trouni.com/?src=trouni/slides-viewer&justify=left).
 
 ---
 
