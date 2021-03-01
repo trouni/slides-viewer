@@ -86,3 +86,7 @@ All the [Reveal.js configuration options](https://revealjs.com/config/) can be o
 ```
 /?src=trouni/slides-viewer&slideNumber=false&transition=zoom
 ```
+
+---
+
+## Enjoy your presentations!
