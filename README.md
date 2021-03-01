@@ -1,9 +1,15 @@
 # Slides Viewer
+
+---
+
+## Style customization
+
+
 ### Theme
 
-By default, the slides will be displayed using a custom `kesseo` theme, but you can specify another theme for the slides using the `theme` parameter.
+By default, the slides will be displayed using a custom theme, but you can use another one using the `theme` parameter.
 
-You can use any of the [included Reveal.js themes](https://revealjs.com/themes/).
+Available themes include any of the [standard Reveal.js themes](https://revealjs.com/themes/).
 
 *Example:*
 ```
@@ -22,15 +28,9 @@ You can overwrite the syntax highlighter to any of the [hljs color styles](https
 /?source=trouni/slides-viewer&theme=black&hljs=tomorrow-night
 ```
 
+---
 
-### Customize Reveal.js config
-
-All the [Reveal.js configuration options](https://revealjs.com/config/) can be overridden via the query params.
-
-*Example:*
-```
-/?source=trouni/slides-viewer&slideNumber=false&transition=zoom
-```
+## Reveal.js configuration
 
 
 ### Default Reveal.js config
@@ -52,4 +52,15 @@ Below are the default Reveal.js config options for the Slides Viewer:
   separatorNotes: "^Note:",
   separator: "^---$"
 }
+```
+
+
+### Custom config
+
+
+All the [Reveal.js configuration options](https://revealjs.com/config/) can be overridden via the query params.
+
+*Example:*
+```
+/?source=trouni/slides-viewer&slideNumber=false&transition=zoom
 ```
