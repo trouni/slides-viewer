@@ -1,4 +1,21 @@
-# Slides Viewer
+# Markdown Slides Viewer
+
+---
+
+## Slides to display
+
+The slides to display using the viewer can be set using the `source` query parameter. This parameter accepts two types of values:
+- a `url` to a markdown file
+- a GitHub repository name in the format `<username>/<repo>`, which will load the repo's README.md file into the slides viewer
+
+*Examples:*
+```
+# URL of a Markdown file
+/?source=https://raw.githubusercontent.com/trouni/slides-viewer/master/README.md
+
+# GitHub repository
+/?source=trouni/slides-viewer
+```
 
 ---
 
