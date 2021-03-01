@@ -20,20 +20,17 @@
 			const theme = urlParams.get('theme') || "kesseo";
 			const hljsStyle = urlParams.get('hljs');
 			
-			const noSourceStylesheets = [
-				"dist/home.css"
-			]
-			const revealStylesheets = [
+			const stylesheets = [
+				"dist/no-slides.css",
 				"dist/reset.css",
 				"dist/reveal.css",
 				`dist/theme/${theme}.css`,
 			]
 
 			// Set hljs style
-			if (hljsStyle) revealStylesheets.push(`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`)
+			if (hljsStyle) stylesheets.push(`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`)
 
 			// Inject stylesheets in the DOM
-			const stylesheets = source ? revealStylesheets : noSourceStylesheets
 			stylesheets.forEach(stylesheet => addStyleSheet(stylesheet))
 		</script>
 		<style>
@@ -42,19 +39,19 @@
 			.text-right p {text-align: right;}
 			.text-center p {text-align: center;}
 			.text-justify p {text-align: justify;}
+			.no-slides__form, .no-slides .slides {display: none;}
+			.no-slides .no-slides__form, .slides {display: unset;}
 		</style>
 	</head>
 	<body>
 		<div class="reveal">
-			<div class="slides" hidden></div>
-			<div class="no-slides" hidden>
-				<!-- Show this form if no src was given -->
-				<div id="progress"></div>
+			<div class="slides"></div>
+			<div id="progress"></div>
 
+			<!-- Show this form if no src was given -->
+			<div class="no-slides__form">
 				<div class="center">
 					<div id="register">
-
-						<i id="progressButton" class="ion-android-arrow-forward next"></i>
 
 						<div id="inputContainer">
 							<input id="inputField" required autofocus />
@@ -65,7 +62,7 @@
 					</div>
 				</div>
 				<p class="about">
-					Made by <a href="https://github.com/trouni/slides-viewer#markdown-slides-viewer" target="_blank">Trouni Tiet</a> | <a href="/?src=trouni/slides-viewer">About the Slides Viewer</a>
+					<a href="/?src=trouni/slides-viewer">About the Slides Viewer</a> | Made by <a href="https://github.com/trouni/slides-viewer#markdown-slides-viewer" target="_blank">Trouni Tiet</a> | Powered by <a href="https://revealjs.com" target="_blank">Reveal.js</a>
 				</p>
 			</div>
 		</div>
@@ -74,185 +71,27 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="dist/init-slides.js"></script>
+		<script src="dist/init-no-slides-form.js"></script>
 		<script>
-			const slidesContainer = document.querySelector('.slides')
-			const noSlidesForm = document.querySelector('.no-slides')
-
 			if (source) {
-				// Set text justification
-				const justify = urlParams.get('justify');
-				if (justify) slidesContainer.classList.add(`text-${justify}`)
-
-				const revealSettingsDefault = {
-					hash: true,
-					width: 1280,
-					height: 800,
-					controls: true,
-					progress: true,
-					history: true,
-					center: true,
-					slideNumber: true,
-					disableLayout: false,
-					separatorVertical: "^(\r?\n\r?\n|--$)",
-					// Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
-					// For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
-					separatorNotes: "^Note:",
-					separator: "^---$",
-				}
-	
-				const revealSettings = urlParams
-				for (var param in revealSettingsDefault) revealSettings[param] ||= revealSettingsDefault[param]
-
-				if (source.match(/https?:\/\/[\w-]+/)) {
-					revealSettings.markdown = source
-				} else {
-					revealSettings.markdown = `https://raw.githubusercontent.com/${source}/master/README.md`
-				}
-
-				slidesContainer.removeAttribute('hidden')
-
-				const slides = document.createElement('section')
-				for (var option in revealSettings) slides.dataset[option] = revealSettings[option]
-				slidesContainer.append(slides)
-
-				// Scrollable slides if taller than 800px
-
-				const resetSlideScrolling = (slide) => {
-					slide.classList.remove('scrollable-slide');
-				}
-
-				const handleSlideScrolling = (slide) => {
-					if (slide.scrollHeight >= 800) {
-						slide.classList.add('scrollable-slide');
-					}
-				}
-
-				Reveal.addEventListener('ready', function (event) {
-					handleSlideScrolling(event.currentSlide);
-				});
-
-				Reveal.addEventListener('slidechanged', function (event) {
-					if (event.previousSlide) resetSlideScrolling(event.previousSlide)
-					handleSlideScrolling(event.currentSlide);
-				});
-
-				// More info about config & dependencies:
-				// - https://github.com/hakimel/reveal.js#configuration
-				// - https://github.com/hakimel/reveal.js#dependencies
-				Reveal.initialize({
-					...revealSettings,
-
-					plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-				});
+				initSlides(source)
 			} else {
-				noSlidesForm.removeAttribute('hidden')
+				document.body.classList.add('no-slides')
 				var questions = [
 					{
-						question:"Enter markdown url or GitHub repository name [username/repo]",
+						question:"Markdown file URL or GitHub repository name (username/repo)",
 						pattern: /(^https?:\/\/[\w-]+|^[\w-]+\/[\w-]+$)/
 					}
 				]
-
-				;(function(){
-
-					var tTime = 100  // transition transform time from #register in ms
-					var wTime = 200  // transition width time from #register in ms
-					var eTime = 1000 // transition width time from inputLabel in ms
-
-					// init
-					// --------------
-					var position = 0
-
-					putQuestion()
-
-					progressButton.addEventListener('click', validate)
-					inputField.addEventListener('keyup', function(e){
-						transform(0, 0) // ie hack to redraw
-						if(e.keyCode == 13) validate()
-					})
-
-					// functions
-					// --------------
-
-					// load the next question
-					function putQuestion() {
-						inputLabel.innerHTML = questions[position].question
-						inputField.value = ''
-						inputField.type = questions[position].type || 'text'  
-						inputField.focus()
-						showCurrent()
-					}
-					
-					// when all the questions have been answered
-					function done() {
-						
-						// remove the box if there is no next question
-						register.className = 'close'
-						
-						// add the h1 at the end with the welcome text
-						var h1 = document.createElement('h1')
-						h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + '!'))
-						setTimeout(function() {
-							window.location.href = `/?src=${inputField.value}`;
-						}, eTime)
-					}
-
-					// when submitting the current question
-					function validate() {
-
-						// set the value of the field into the array
-						questions[position].value = inputField.value
-
-						// check if the pattern matches
-						if (!inputField.value.match(questions[position].pattern || /.+/)) wrong()
-						else ok(function() {
-							
-							// set the progress of the background
-							progress.style.width = ++position * 100 / questions.length + 'vw'
-
-							// if there is a new question, hide current and load next
-							if (questions[position]) hideCurrent(putQuestion)
-							else hideCurrent(done)		
+				initNoSlidesForm(() => {
+					setTimeout(() => {
+						window.history.pushState({}, "", '?src=' + inputField.value);
+						initSlides(inputField.value, () => {
+							document.getElementById('progress').style.width = 0;
 						})
-					}
-
-					// helper
-					// --------------
-
-					function hideCurrent(callback) {
-						inputContainer.style.opacity = 0
-						inputProgress.style.transition = 'none'
-						inputProgress.style.width = 0
-						setTimeout(callback, wTime)
-					}
-
-					function showCurrent(callback) {
-						inputContainer.style.opacity = 1
-						inputProgress.style.transition = ''
-						inputProgress.style.width = '100%'
-						setTimeout(callback, wTime)
-					}
-
-					function transform(x, y) {
-						register.style.transform = 'translate(' + x + 'px ,  ' + y + 'px)'
-					}
-
-					function ok(callback) {
-						register.className = ''
-						setTimeout(transform, tTime * 0, 0, 10)
-						setTimeout(transform, tTime * 1, 0, 0)
-						setTimeout(callback,  tTime * 2)
-					}
-
-					function wrong(callback) {
-						register.className = 'wrong'
-						for(var i = 0; i < 6; i++) // shaking motion
-							setTimeout(transform, tTime * i, (i%2*2-1)*20, 0)
-						setTimeout(transform, tTime * 6, 0, 0)
-						setTimeout(callback,  tTime * 7)
-					}
-
-				}())
+					}, 1000)
+				})
 			}
 		</script>
 	</body>

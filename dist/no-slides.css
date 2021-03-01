@@ -9,23 +9,27 @@ body {
   background: -ms-radial-gradient(center, circle cover, #113860 0%, #041d35 100%);
   background: radial-gradient(center, circle cover, #113860 0%, #041d35 100%);
   margin: 0;
-  font-family: Roboto, sans-serif;
-  color: rgba(255, 255, 255, 0.8);
+  min-height: 100vh;
 }
 
-h1 {
-  position: relative;
-  color: #fff;
-  opacity: 0;
-  transition: .8s ease-in-out;
+.no-slides__form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 #progress {
-  position: absolute;
+  position: fixed;
   background: var(--bg-outer-color);
   height: 100vh;
   width: 0;
   transition: width .2s ease-in-out;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
 .center {
@@ -49,6 +53,7 @@ h1 {
   padding: 2px 15px 20px 15px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .3);
   transition: transform .1s ease-in-out;
+  z-index: 101;
 }
 
 #register.close {
@@ -142,10 +147,11 @@ a:hover {
 }
 
 p.about {
+  color: rgba(255, 255, 255, 0.3);
   position: fixed;
   bottom: 2em;
   left: 50%;
   transform: translateX(-50%);
   font-weight: 200;
-  font-size: 0.9em;
+  font-size: 12px;
 }
