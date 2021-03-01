@@ -24,7 +24,7 @@ The slides to display using the viewer can be set using the `source` query param
 
 ### Theme
 
-By default, the slides will be displayed using a custom theme, but you can use another one using the `theme` parameter.
+By default, the slides will be displayed using a custom theme, but you can use another one using the `theme` query parameter.
 
 Available themes include any of the [standard Reveal.js themes](https://revealjs.com/themes/).
 
@@ -38,7 +38,7 @@ Available themes include any of the [standard Reveal.js themes](https://revealjs
 
 By default, code will not use any syntax highlighting (the default theme color will be used for code), unless the theme specifies one.
 
-You can overwrite the syntax highlighter to any of the [hljs color styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles) using the `hljs` parameter.
+You can overwrite the syntax highlighter to any of the [hljs color styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles) using the `hljs` query parameter.
 
 *Example:*
 ```
@@ -73,7 +73,6 @@ Below are the default Reveal.js config options for the Slides Viewer:
 
 
 ### Custom config
-
 
 All the [Reveal.js configuration options](https://revealjs.com/config/) can be overridden via the query params.
 
