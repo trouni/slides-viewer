@@ -39,7 +39,7 @@
 	<body>
 		<div class="reveal">
 			<div class="slides" hidden></div>
-			<div id="no-url-page">
+			<div id="no-slides" hidden>
 				<!-- Shows this form if no markdown url was given in the params -->
 				<div id="progress"></div>
 
@@ -56,6 +56,9 @@
 
 					</div>
 				</div>
+				<p class="about">
+					Made by <a href="https://github.com/trouni/slides-viewer#markdown-slides-viewer" target="_blank">Trouni Tiet</a> | <a href="/?source=trouni/slides-viewer">About the Slides Viewer</a>
+				</p>
 			</div>
 		</div>
 
@@ -93,7 +96,7 @@
 
 				const slidesContainer = document.querySelector('.slides')
 				slidesContainer.removeAttribute('hidden')
-				document.getElementById('no-url-page').remove()
+				document.getElementById('no-slides').remove()
 
 				const slides = document.createElement('section')
 				for (var option in revealSettings) slides.dataset[option] = revealSettings[option]
@@ -129,6 +132,7 @@
 					plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 				});
 			} else {
+				document.getElementById('no-slides').removeAttribute('hidden')
 				var questions = [
 					{
 						question:"Enter markdown url or GitHub repository name [username/repo]",

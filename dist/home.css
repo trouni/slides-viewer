@@ -9,14 +9,15 @@ body {
   background: -ms-radial-gradient(center, circle cover, #113860 0%, #041d35 100%);
   background: radial-gradient(center, circle cover, #113860 0%, #041d35 100%);
   margin: 0;
-  font-family: Roboto, sans-serif
+  font-family: Roboto, sans-serif;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 h1 {
   position: relative;
   color: #fff;
   opacity: 0;
-  transition: .8s ease-in-out
+  transition: .8s ease-in-out;
 }
 
 #progress {
@@ -24,14 +25,19 @@ h1 {
   background: var(--bg-outer-color);
   height: 100vh;
   width: 0;
-  transition: width .2s ease-in-out
+  transition: width .2s ease-in-out;
 }
 
 .center {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+  ;
 }
 
 #register {
@@ -42,7 +48,7 @@ h1 {
   margin: .5rem;
   padding: 2px 15px 20px 15px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .3);
-  transition: transform .1s ease-in-out
+  transition: transform .1s ease-in-out;
 }
 
 #register.close {
@@ -50,7 +56,7 @@ h1 {
   padding: 0;
   overflow: hidden;
   transition: .8s ease-in-out;
-  box-shadow: 0 16px 24px 2px transparent
+  box-shadow: 0 16px 24px 2px transparent;
 }
 
 .next {
@@ -60,26 +66,27 @@ h1 {
   font-size: 40px;
   color: #25a3ff;
   float: right;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .next:hover {
-  color: #333
+  color: #333;
 }
 
 .wrong .next {
-  color: #ff2d26
+  color: #ff2d26;
 }
 
 .close .next {
-  color: #fff
+  color: #fff;
 }
 
 #inputContainer {
   position: relative;
   opacity: 0;
   margin-top: 25px;
-  transition: opacity .3s ease-in-out
+  transition: opacity .3s ease-in-out;
+  color: #333;
 }
 
 #inputContainer input {
@@ -90,7 +97,7 @@ h1 {
   font-weight: 700;
   outline: 0;
   background: 0 0;
-  box-shadow: none
+  box-shadow: none;
 }
 
 #inputLabel {
@@ -101,14 +108,14 @@ h1 {
   font-size: 1em;
   font-weight: 700;
   padding: 0 5px;
-  transition: .2s ease-in-out
+  transition: .2s ease-in-out;
 }
 
 #inputContainer input:valid+#inputLabel {
   top: -15px;
   font-size: 11px;
   font-weight: 400;
-  color: #9e9e9e
+  color: #9e9e9e;
 }
 
 #inputProgress {
@@ -116,9 +123,29 @@ h1 {
   border-bottom: 2px solid #25a3ff;
   padding: 3px 0;
   width: 0;
-  transition: width .6s ease-in-out
+  transition: width .6s ease-in-out;
 }
 
 .wrong #inputProgress {
-  border-color: #ff2d26
+  border-color: #ff2d26;
+}
+
+a,
+a:visited {
+  color: #25a3ff;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+p.about {
+  position: fixed;
+  bottom: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 200;
+  font-size: 0.9em;
 }
