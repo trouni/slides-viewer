@@ -6,17 +6,17 @@
 
 ## Slides to display
 
-The slides to display using the viewer can be set using the `source` query parameter. This parameter accepts two types of values:
+The slides to display using the viewer can be set using the `src` query parameter. This parameter accepts two types of values:
 - a `url` to a markdown file
 - a GitHub repository name in the format `<username>/<repo>`, which will load the repo's README.md file into the slides viewer
 
 *Examples:*
 ```
 # URL of a Markdown file
-/?source=https://raw.githubusercontent.com/trouni/slides-viewer/master/README.md
+/?src=https://raw.githubusercontent.com/trouni/slides-viewer/master/README.md
 
 # GitHub repository
-/?source=trouni/slides-viewer
+/?src=trouni/slides-viewer
 ```
 
 ---
@@ -32,7 +32,7 @@ Available themes include any of the [standard Reveal.js themes](https://revealjs
 
 *Example:*
 ```
-/?source=trouni/slides-viewer&theme=solarized
+/?src=trouni/slides-viewer&theme=solarized
 ```
 
 
@@ -44,7 +44,7 @@ You can overwrite the syntax highlighter to any of the [hljs color styles](https
 
 *Example:*
 ```
-/?source=trouni/slides-viewer&theme=black&hljs=tomorrow-night
+/?src=trouni/slides-viewer&theme=black&hljs=tomorrow-night
 ```
 
 ---
@@ -80,5 +80,5 @@ All the [Reveal.js configuration options](https://revealjs.com/config/) can be o
 
 *Example:*
 ```
-/?source=trouni/slides-viewer&slideNumber=false&transition=zoom
+/?src=trouni/slides-viewer&slideNumber=false&transition=zoom
 ```

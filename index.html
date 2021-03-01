@@ -16,7 +16,7 @@
 			}
 
 			const urlParams = new URLSearchParams(window.location.search);
-			const source = urlParams.get('source');
+			const source = urlParams.get('src') || urlParams.get('source');
 			const theme = urlParams.get('theme') || "kesseo";
 			const hljsStyle = urlParams.get('hljs');
 			
@@ -57,7 +57,7 @@
 					</div>
 				</div>
 				<p class="about">
-					Made by <a href="https://github.com/trouni/slides-viewer#markdown-slides-viewer" target="_blank">Trouni Tiet</a> | <a href="/?source=trouni/slides-viewer">About the Slides Viewer</a>
+					Made by <a href="https://github.com/trouni/slides-viewer#markdown-slides-viewer" target="_blank">Trouni Tiet</a> | <a href="/?src=trouni/slides-viewer">About the Slides Viewer</a>
 				</p>
 			</div>
 		</div>
@@ -180,7 +180,7 @@
 						var h1 = document.createElement('h1')
 						h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + '!'))
 						setTimeout(function() {
-							window.location.href = `/?source=${inputField.value}`;
+							window.location.href = `/?src=${inputField.value}`;
 						}, eTime)
 					}
 
