@@ -1,6 +1,6 @@
-<h1 align="center"> Markdown Slides Viewer</h1>
+<h1 style="text-align: center;"> Markdown Slides Viewer</h1>
 
-<p align="center">
+<p style="text-align: center;">
   <a href="http://slides.trouni.com">Online slides viewer</a> by <a href="https://github.com/trouni/slides-viewer">Trouni Tiet</a> (powered by <a href="https://revealjs.com">Reveal.js)</a>
 </p>
 
