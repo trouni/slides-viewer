@@ -1,6 +1,6 @@
 # Markdown Slides Viewer
 
-[Online slides viewer](http://slides.trouni.com) by [Trouni Tiet](https://github.com/trouni/slides-viewer) (powered by [Reveal.js](https://revealjs.com))
+#### [Online slides viewer](http://slides.trouni.com) by [Trouni Tiet](https://github.com/trouni/slides-viewer) (powered by [Reveal.js](https://revealjs.com))
 
 Note: These instructions are also [viewable as slides](http://slides.trouni.com/?src=trouni/slides-viewer).
 

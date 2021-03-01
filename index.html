@@ -28,19 +28,27 @@
 				"dist/reveal.css",
 				`dist/theme/${theme}.css`,
 			]
+
+			// Set hljs style
 			if (hljsStyle) revealStylesheets.push(`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`)
 
+			// Inject stylesheets in the DOM
 			const stylesheets = source ? revealStylesheets : noSourceStylesheets
-
 			stylesheets.forEach(stylesheet => addStyleSheet(stylesheet))
 		</script>
-		<style>.scrollable-slide {height: 800px;overflow-y: auto !important;}</style>
+		<style>
+			.scrollable-slide {height: 800px;overflow-y: auto !important;}
+			.text-left p {text-align: left;}
+			.text-right p {text-align: right;}
+			.text-center p {text-align: center;}
+			.text-justify p {text-align: justify;}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides" hidden></div>
-			<div id="no-slides" hidden>
-				<!-- Shows this form if no markdown url was given in the params -->
+			<div class="no-slides" hidden>
+				<!-- Show this form if no src was given -->
 				<div id="progress"></div>
 
 				<div class="center">
@@ -67,7 +75,14 @@
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
 		<script>
+			const slidesContainer = document.querySelector('.slides')
+			const noSlidesForm = document.querySelector('.no-slides')
+
 			if (source) {
+				// Set text justification
+				const justify = urlParams.get('justify');
+				if (justify) slidesContainer.classList.add(`text-${justify}`)
+
 				const revealSettingsDefault = {
 					hash: true,
 					width: 1280,
@@ -94,9 +109,7 @@
 					revealSettings.markdown = `https://raw.githubusercontent.com/${source}/master/README.md`
 				}
 
-				const slidesContainer = document.querySelector('.slides')
 				slidesContainer.removeAttribute('hidden')
-				document.getElementById('no-slides').remove()
 
 				const slides = document.createElement('section')
 				for (var option in revealSettings) slides.dataset[option] = revealSettings[option]
@@ -132,7 +145,7 @@
 					plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 				});
 			} else {
-				document.getElementById('no-slides').removeAttribute('hidden')
+				noSlidesForm.removeAttribute('hidden')
 				var questions = [
 					{
 						question:"Enter markdown url or GitHub repository name [username/repo]",
