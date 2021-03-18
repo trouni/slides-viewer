@@ -16,11 +16,11 @@ const initSlides = (source, callback = () => {}) => {
     center: true,
     slideNumber: true,
     disableLayout: false,
-    separatorVertical: "^(\r?\n\r?\n|--$)",
+    separatorVertical: "^((\r?\n){2}|\r?\n--\r?\n$)",
     // Note that Windows uses `\r\n` instead of `\n` as its linefeed character.
     // For a regex that supports all operating systems, use `\r?\n` instead of `\n`.
     separatorNotes: "^Note:",
-    separator: "^---$",
+    separator: "^((\r?\n){3}|\r?\n---\r?\n$)",
   }
   
   const revealSettings = urlParams
