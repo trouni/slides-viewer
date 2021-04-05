@@ -25,15 +25,22 @@ const initSlides = (source, callback = () => {}) => {
   
   const revealSettings = urlParams
   for (var param in revealSettingsDefault) revealSettings[param] ||= revealSettingsDefault[param]
-  
-  if (source.match(/https?:\/\/[\w-]+/)) {
-    revealSettings.markdown = source
-  } else {
+
+  const repoToUrl = (source) => {
     let mdUrl = 'https://raw.githubusercontent.com'
     let ghRepo = source.split("/")
     if (!ghRepo[2]) ghRepo.push('master')
     ghRepo.forEach(el => { if (el) mdUrl += '/' + el })
-    revealSettings.markdown = `${mdUrl}/README.md`
+    return `${mdUrl}/README.md`
+  }
+
+  const fileUrl = source.match(/https?:\/\/[\w-]+/) ? source : repoToUrl(source)
+  
+  revealSettings.markdown = fileUrl
+
+  const urlToParentFolder = (url) => {
+    const split = url.split('/')
+    return split.slice(0, split.length - 1).join("/")
   }
   
   const slides = document.createElement('section')
@@ -54,6 +61,10 @@ const initSlides = (source, callback = () => {}) => {
   
   Reveal.addEventListener('ready', function (event) {
     handleSlideScrolling(event.currentSlide);
+    document.querySelectorAll('img').forEach(img => {
+      const imageSrc = img.getAttribute('src')
+      if (!imageSrc.match(/https?:\/\/[\w-]+/)) img.src = `${urlToParentFolder(fileUrl)}/${imageSrc.replace(/^\//, '')}`
+    })
   });
   
   Reveal.addEventListener('slidechanged', function (event) {
