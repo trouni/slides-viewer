@@ -304,7 +304,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
     background-color: #2b2b2b; } }
 
 :not(pre) > code {
-  background-color: rgba(238, 238, 238, 0.1); }
+  background-color: rgba(238, 238, 238, 0.1);
+  padding: 0 0.2em;
+  margin: 0 0.1em; }
 
 .reveal pre {
   font-size: 0.8em; }

@@ -29,7 +29,11 @@ const initSlides = (source, callback = () => {}) => {
   if (source.match(/https?:\/\/[\w-]+/)) {
     revealSettings.markdown = source
   } else {
-    revealSettings.markdown = `https://raw.githubusercontent.com/${source}/master/README.md`
+    let mdUrl = 'https://raw.githubusercontent.com'
+    let ghRepo = source.split("/")
+    if (!ghRepo[2]) ghRepo.push('master')
+    ghRepo.forEach(el => { if (el) mdUrl += '/' + el })
+    revealSettings.markdown = `${mdUrl}/README.md`
   }
   
   const slides = document.createElement('section')

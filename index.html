@@ -1,98 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>Slides Viewer</title>
+    <title>Slides Viewer</title>
 
-		<script>
-			const addStyleSheet = (path) => {
-				const stylesheet = document.createElement("LINK");
-				stylesheet.setAttribute("rel", "stylesheet");
-				stylesheet.setAttribute("type", "text/css");
-				stylesheet.setAttribute("href", path);
-				document.head.appendChild(stylesheet);
-			}
+    <script>
+      const addStyleSheet = (path) => {
+        const stylesheet = document.createElement("LINK");
+        stylesheet.setAttribute("rel", "stylesheet");
+        stylesheet.setAttribute("type", "text/css");
+        stylesheet.setAttribute("href", path);
+        document.head.appendChild(stylesheet);
+      };
 
-			const urlParams = new URLSearchParams(window.location.search);
-			const source = urlParams.get('src') || urlParams.get('source');
-			const theme = urlParams.get('theme') || "kesseo";
-			const hljsStyle = urlParams.get('hljs');
-			
-			const stylesheets = [
-				"dist/no-slides.css",
-				"dist/reset.css",
-				"dist/reveal.css",
-				`dist/theme/${theme}.css`,
-			]
+      const urlParams = new URLSearchParams(window.location.search);
+      const source = urlParams.get("src") || urlParams.get("source");
+      const theme = urlParams.get("theme") || "kesseo";
+      const hljsStyle = urlParams.get("hljs");
 
-			// Set hljs style
-			if (hljsStyle) stylesheets.push(`https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`)
+      const stylesheets = [
+        "dist/no-slides.css",
+        "dist/reset.css",
+        "dist/reveal.css",
+        `dist/theme/${theme}.css`,
+      ];
 
-			// Inject stylesheets in the DOM
-			stylesheets.forEach(stylesheet => addStyleSheet(stylesheet))
-		</script>
-		<style>
-			.scrollable-slide {height: 800px;overflow-y: auto !important;}
-			.text-left p {text-align: left;}
-			.text-right p {text-align: right;}
-			.text-center p {text-align: center;}
-			.text-justify p {text-align: justify;}
-			.no-slides__form, .no-slides .slides {display: none;}
-			.no-slides .no-slides__form, .slides {display: unset;}
-		</style>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides"></div>
-			<div id="progress"></div>
+      // Set hljs style
+      if (hljsStyle)
+        stylesheets.push(
+          `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/${hljsStyle}.min.css`
+        );
 
-			<!-- Show this form if no src was given -->
-			<div class="no-slides__form">
-				<div class="center">
-					<div id="register">
+      // Inject stylesheets in the DOM
+      stylesheets.forEach((stylesheet) => addStyleSheet(stylesheet));
+    </script>
+    <style>
+      .scrollable-slide {
+        height: 800px;
+        overflow-y: auto !important;
+      }
+      .text-left p {
+        text-align: left;
+      }
+      .text-right p {
+        text-align: right;
+      }
+      .text-center p {
+        text-align: center;
+      }
+      .text-justify p {
+        text-align: justify;
+      }
+      .no-slides__form,
+      .no-slides .slides {
+        display: none;
+      }
+      .no-slides .no-slides__form,
+      .slides {
+        display: unset;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"></div>
+      <div id="progress"></div>
 
-						<div id="inputContainer">
-							<input id="inputField" required autofocus />
-							<label id="inputLabel"></label>
-							<div id="inputProgress"></div>
-						</div>
+      <!-- Show this form if no src was given -->
+      <div class="no-slides__form">
+        <div class="center">
+          <div id="register">
+            <div id="inputContainer">
+              <input id="inputField" required autofocus />
+              <label id="inputLabel"></label>
+              <div id="inputProgress"></div>
+            </div>
+          </div>
+        </div>
+        <p class="about">
+          <a href="/?src=trouni/slides-viewer">About the Slides Viewer</a> |
+          Made by
+          <a
+            href="https://github.com/trouni/slides-viewer#markdown-slides-viewer"
+            target="_blank"
+            >Trouni Tiet</a
+          >
+          | Powered by
+          <a href="https://revealjs.com" target="_blank">Reveal.js</a>
+        </p>
+      </div>
+    </div>
 
-					</div>
-				</div>
-				<p class="about">
-					<a href="/?src=trouni/slides-viewer">About the Slides Viewer</a> | Made by <a href="https://github.com/trouni/slides-viewer#markdown-slides-viewer" target="_blank">Trouni Tiet</a> | Powered by <a href="https://revealjs.com" target="_blank">Reveal.js</a>
-				</p>
-			</div>
-		</div>
-
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script src="dist/init-slides.js"></script>
-		<script src="dist/init-no-slides-form.js"></script>
-		<script>
-			if (source) {
-				initSlides(source)
-			} else {
-				document.body.classList.add('no-slides')
-				var questions = [
-					{
-						question:"Markdown file URL or GitHub repository name (username/repo)",
-						pattern: /(^https?:\/\/[\w-]+|^[\w-]+\/[\w-]+$)/
-					}
-				]
-				initNoSlidesForm(() => {
-					setTimeout(() => {
-						window.history.pushState({}, "", '?src=' + inputField.value);
-						initSlides(inputField.value, () => {
-							document.getElementById('progress').style.width = 0;
-						})
-					}, 1000)
-				})
-			}
-		</script>
-	</body>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="dist/init-slides.js"></script>
+    <script src="dist/init-no-slides-form.js"></script>
+    <script>
+      if (source) {
+        initSlides(source);
+      } else {
+        document.body.classList.add("no-slides");
+        var questions = [
+          {
+            question:
+              "Markdown file URL or GitHub repository (owner/repo[/branch])",
+            pattern: /(^https?:\/\/[\w-]+|^[\w-]+\/[\w-]+$)/,
+          },
+        ];
+        initNoSlidesForm(() => {
+          setTimeout(() => {
+            window.history.pushState({}, "", "?src=" + inputField.value);
+            initSlides(inputField.value, () => {
+              document.getElementById("progress").style.width = 0;
+            });
+          }, 1000);
+        });
+      }
+    </script>
+  </body>
 </html>
