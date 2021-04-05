@@ -111,7 +111,7 @@
           {
             question:
               "Markdown file URL or GitHub repository (owner/repo[/branch])",
-            pattern: /(^https?:\/\/[\w-]+|^[\w-]+\/[\w-]+$)/,
+            pattern: /(^https?:\/\/[\w-]+|^[\w-]+(\/[\w-]+){1,2}$)/,
           },
         ];
         initNoSlidesForm(() => {
