@@ -61,10 +61,13 @@ const initSlides = (source, callback = () => {}) => {
   
   Reveal.addEventListener('ready', function (event) {
     handleSlideScrolling(event.currentSlide);
+    // Fix relative image paths
     document.querySelectorAll('img').forEach(img => {
       const imageSrc = img.getAttribute('src')
       if (!imageSrc.match(/https?:\/\/[\w-]+/)) img.src = `${urlToParentFolder(fileUrl)}/${imageSrc.replace(/^\//, '')}`
     })
+    // Make links open in new tab
+    document.querySelectorAll('a').forEach(link => link.target = "_blank")
   });
   
   Reveal.addEventListener('slidechanged', function (event) {
